@@ -18,13 +18,13 @@ def subscribe_intent_callback(hermes, intent_message):
     intentname = intent_message.intent.intent_name
 
     if intentname == user_intent("LichtAn"):
-        location = intent_message.slots.location.fist().value
+        location = intent_message.slots.location.first().value
         result_sentence = "Schalte das Licht im" + location + "an"
         current_session_id = intent_message.session_id
         hermes.publish_end_session(current_session_id, result_sentence)
 
     elif intentname == user_intent("LichtAus"):
-        location = intent_message.slots.location.fist().value
+        location = intent_message.slots.location.first().value
         result_sentence = "Schalte das Licht im" + location + "an"
         current_session_id = intent_message.session_id
         hermes.publish_end_session(current_session_id, result_sentence)

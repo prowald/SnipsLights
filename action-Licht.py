@@ -4,7 +4,7 @@ from hermes_python.hermes import Hermes, MqttOptions
 import toml
 
 
-USERNAME_INTENTS = "domi"
+USERNAME_INTENTS = "prowald"
 MQTT_BROKER_ADDRESS = "localhost:1883"
 MQTT_USERNAME = None
 MQTT_PASSWORD = None

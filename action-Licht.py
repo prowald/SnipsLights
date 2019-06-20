@@ -2,7 +2,12 @@
 
 from hermes_python.hermes import Hermes, MqttOptions
 import toml
+import ctypes
+import os
+# django project name is adleads, replace adleads with your project name
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "rp_smarthome.settings")
 
+from core.models import Room
 
 USERNAME_INTENTS = "prowald"
 MQTT_BROKER_ADDRESS = "localhost:1883"
@@ -16,10 +21,14 @@ def user_intent(intentname):
 
 def subscribe_intent_callback(hermes, intent_message):
     intentname = intent_message.intent.intent_name
+    stringtools = ctypes.CDLL("libsnips.so")
+    print(stringtools.process())
+
 
     if intentname == user_intent("LichtAn"):
         location = intent_message.slots.location.first().value
         result_sentence = "Schalte das Licht im " + location + " an"
+
         current_session_id = intent_message.session_id
         hermes.publish_end_session(current_session_id, result_sentence)
 
